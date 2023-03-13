@@ -35,13 +35,13 @@ function getCurrentSection() {
 
   for (let i = 0; i < sections.length; i++) {
     const section = sections[i].getBoundingClientRect();
-    const isInViewport = (
+    const visibleInViewport = (
       section.top >= 0 &&
       section.left >= 0 &&
       section.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
       section.right <= (window.innerWidth || document.documentElement.clientWidth)
     );
-    if (isInViewport) {
+    if (visibleInViewport) {
       return i;
     }
   }
@@ -102,8 +102,8 @@ addSectionsToNavbar();
 document.addEventListener('scroll', function() {
   for (let i = 0; i < sections.length; i++) {
     const section = sections[i];
-    const isInViewport = section.getBoundingClientRect().top <= 50 && section.getBoundingClientRect().bottom >= 50;
-    if (isInViewport) {
+    const visibleInViewport = section.getBoundingClientRect().top <= 50 && section.getBoundingClientRect().bottom >= 50;
+    if (visibleInViewport) {
       section.classList.add('your-active-class');
     } else {
       section.classList.remove('your-active-class');
